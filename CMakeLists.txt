@@ -18,11 +18,8 @@ target_link_libraries(main PUBLIC matplot)
 # Clang-tidy
 set(CMAKE_CXX_CLANG_TIDY "")
 set_target_properties(main PROPERTIES CXX_CLANG_TIDY "clang-tidy;-checks=\
-  readability-identifier-naming,\
-  modernize-use-auto,\
-  modernize-use-bool-literals,\
-  performance-for-range-copy,\
-  bugprone-bad-pointer-arithmetic,\
-  cppcoreguidelines-special-member-functions,\
-  performance-move-const-arg,\
-  modernize-*")
+  bugprone-*,\
+  cppcoreguidelines-*,\
+  clang-analyzer-*,\
+  readability-*,\
+  misc-*")
