@@ -1,11 +1,15 @@
 set(EXECUTABLE_OUTPUT_PATH bin)
 
-add_subdirectory(matplotplusplus)
-set(OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/plots/)
-
+# My files
 file(GLOB SOURCE cpp/src/*.cpp cpp/main/main.cpp)
 include_directories(cpp/include)
 
 add_executable(main ${SOURCE})
-target_link_libraries(main PUBLIC matplot)
+
+set(OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/plots/)
 target_compile_definitions(main PRIVATE OUTPUT_DIRECTORY="${OUTPUT_DIRECTORY}")
+
+
+# Matplot++
+add_subdirectory(matplotplusplus)
+target_link_libraries(main PUBLIC matplot)

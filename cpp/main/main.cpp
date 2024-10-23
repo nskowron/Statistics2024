@@ -1,21 +1,50 @@
 #include <functions.hpp>
-#include <approx.hpp>
 #include <simulate.hpp>
+#include <plot.hpp>
+#include <simulation.hpp>
 
-#include <matplot/matplot.h>
 #include <string>
-#include <utility>
 #include <cmath>
 
 int main(void)
 {
-    simulate_function(f, std::make_pair<double, double>(0, 8), 2.0, 5, 12.0, std::string(OUTPUT_DIRECTORY) + "Plot1-1.pdf");
-    simulate_function(f, std::make_pair<double, double>(0, 8), 2.0, 50, 12.0, std::string(OUTPUT_DIRECTORY) + "Plot1-2.pdf");
-    simulate_function(g, std::make_pair<double, double>(0, M_PI), 1.0, 5, 2.0, std::string(OUTPUT_DIRECTORY) + "Plot2-1.pdf");
-    simulate_function(g, std::make_pair<double, double>(0, M_PI), 1.0, 50, 2.0, std::string(OUTPUT_DIRECTORY) + "Plot2-2.pdf");
-    simulate_function(h, std::make_pair<double, double>(0, 1), 27.0 / 64.0, 5, 0.2, std::string(OUTPUT_DIRECTORY) + "Plot3-1.pdf");
-    simulate_function(h, std::make_pair<double, double>(0, 1), 27.0 / 64.0, 50, 0.2, std::string(OUTPUT_DIRECTORY) + "Plot3-2.pdf");
+    std::string basic_filename = std::string(OUTPUT_DIRECTORY) + "Plot";
 
-    simulate_pi(5, std::string(OUTPUT_DIRECTORY) + "Plot4-1.pdf");
-    simulate_pi(50, std::string(OUTPUT_DIRECTORY) + "Plot4-2.pdf");
+    {
+        function_simulation sim;
+        sim.f = f;
+        sim.limit.left = 0.0;
+        sim.limit.right = 8.0;
+        sim.max = 2.0;
+
+        plot(simulate_function(sim, 5), 12.0, basic_filename + "1-1.pdf");
+        plot(simulate_function(sim, 50), 12.0, basic_filename + "1-2.pdf");
+    }
+
+    {
+        function_simulation sim;
+        sim.f = g;
+        sim.limit.left = 0.0;
+        sim.limit.right = M_PI;
+        sim.max = 1.0;
+
+        plot(simulate_function(sim, 5), 2.0, basic_filename + "2-1.pdf");
+        plot(simulate_function(sim, 50), 2.0, basic_filename + "2-2.pdf");
+    }
+
+    {
+        function_simulation sim;
+        sim.f = h;
+        sim.limit.left = 0.0;
+        sim.limit.right = 1.0;
+        sim.max = 27.0 / 64.0;
+
+        plot(simulate_function(sim, 5), 0.2, basic_filename + "3-1.pdf");
+        plot(simulate_function(sim, 50), 0.2, basic_filename + "3-2.pdf");
+    }
+
+    {
+        plot(simulate_pi(5), M_PI, basic_filename + "4-1.pdf");
+        plot(simulate_pi(50), M_PI, basic_filename + "4-2.pdf");
+    }
 }

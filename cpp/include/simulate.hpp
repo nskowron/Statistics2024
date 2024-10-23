@@ -1,10 +1,11 @@
 #ifndef SIMULATE_HPP
 #define SIMULATE_HPP
 
-#include <string>
-#include <utility>
+#include <simulation.hpp>
 
-void simulate_function(double (*f)(double), std::pair<double, double> x_lim, double y_max, int tries, double real_integral, std::string file);
-void simulate_pi(int tries, std::string file);
+#include <string>
+
+simulation_results simulate_function(function_simulation sim, int tries);
+simulation_results simulate_pi(int tries);
 
 #endif
