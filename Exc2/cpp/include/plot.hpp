@@ -5,6 +5,6 @@
 
 #include <string>
 
-void plot(simulation_results results, double expected_result, std::string file);
+void plot(axis<int> result, axis<int> avg_result, std::string file);
 
 #endif

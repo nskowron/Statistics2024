@@ -3,25 +3,67 @@
 #include <matplot/matplot.h>
 #include <vector>
 
-simulation_results simulate_balls_and_bins(int tries)
+single_simulation_results single_simulate(int n)
 {
-    simulation_results results;
+    single_simulation_results results;
+
+    
+
+    return results;
+}
+
+full_simulation_results full_simulate(int tries)
+{
+    full_simulation_results results;
 
     for(int n = 1000; n <= 100000; n += 1000)
     {
-        double avg = 0;
+        single_simulation_results avg{ 0, 0, 0, 0 };
+
         for(int k = 1; k <= tries; ++k)
         {
-            double approx = approx_integral(sim, n);
+            single_simulation_results sim = single_simulate(n);
 
-            avg += approx;
-            results.result.x.push_back(n);
-            results.result.y.push_back(approx);
+            avg.B += sim.B;
+            avg.U += sim.U;
+            avg.C += sim.C;
+            avg.D += sim.D;
+
+            results.add(n, sim);
         }
-        avg /= tries;
-        results.avg_result.x.push_back(n);
-        results.avg_result.y.push_back(avg);
+        avg.B /= tries;
+        avg.U /= tries;
+        avg.C /= tries;
+        avg.D /= tries;
+
+        results.add_avg(n, avg);
     }
 
     return results;
+}
+
+void full_simulation_results::add(int n, const single_simulation_results& result)
+{
+    B.x.push_back(n);
+    U.x.push_back(n);
+    C.x.push_back(n);
+    D.x.push_back(n);
+
+    B.y.push_back(result.B);
+    U.y.push_back(result.U);
+    C.y.push_back(result.C);
+    D.y.push_back(result.D);
+}
+
+void full_simulation_results::add_avg(int n, const single_simulation_results& result)
+{
+    avg_B.x.push_back(n);
+    avg_U.x.push_back(n);
+    avg_C.x.push_back(n);
+    avg_D.x.push_back(n);
+
+    avg_B.y.push_back(result.B);
+    avg_U.y.push_back(result.U);
+    avg_C.y.push_back(result.C);
+    avg_D.y.push_back(result.D);
 }
