@@ -5,6 +5,6 @@
 
 #include <string>
 
-void plot(axis<int> result, axis<int> avg_result, std::string file);
+void plot(axis<double> result, axis<double> avg_result, std::string file);
 
 #endif

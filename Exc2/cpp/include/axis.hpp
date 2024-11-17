@@ -8,6 +8,15 @@ struct axis
 {
     std::vector<T> x;
     std::vector<T> y;
+
+    template<typename U>
+    operator axis<U>()
+    {
+        return axis<U>{
+            std::vector<U>(x.begin(), x.end()),
+            std::vector<U>(y.begin(), y.end())
+        };
+    }
 };
 
 #endif 

@@ -14,19 +14,20 @@ struct single_simulation_results
 struct full_simulation_results
 {
     axis<int> B;
-    axis<int> avg_B;
+    axis<double> avg_B;
 
     axis<int> U;
-    axis<int> avg_U;
+    axis<double> avg_U;
 
     axis<int> C;
-    axis<int> avg_C;
+    axis<double> avg_C;
 
     axis<int> D;
-    axis<int> avg_D;
+    axis<double> avg_D;
 
     void add(int n, const single_simulation_results& result);
-    void add_avg(int n, const single_simulation_results& result);
+    
+    void calculate_avg(int tries);
 };
 
 single_simulation_results single_simulate(int n);
