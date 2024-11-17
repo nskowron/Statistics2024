@@ -14,7 +14,7 @@ void plot(axis<double> result, axis<double> avg_result, std::string file)
 
     matplot::scatter(result.x, result.y)->marker(".").marker_size(0.5).color("blue");
     matplot::hold(matplot::on);
-    matplot::scatter(avg_result.x, avg_result.y)->line_width(2).color("red");
+    matplot::plot(avg_result.x, avg_result.y)->line_width(2).color("red");
     matplot::hold(matplot::off);
 
     matplot::save(file);

@@ -3,8 +3,6 @@
 #include <vector>
 #include <random>
 
-#include <iostream>
-
 single_simulation_results single_simulate(int n)
 {
     single_simulation_results results{ 0, 0, 0, 0 };
@@ -91,15 +89,14 @@ full_simulation_results full_simulate(int tries)
 
     for(int n = 1000; n <= 100000; n += 1000)
     {
-        std::cout << n << std::endl;
         for(int k = 1; k <= tries; ++k)
         {
             single_simulation_results sim = single_simulate(n);
 
             results.add(n, sim);
         }
-        results.calculate_avg(tries);
     }
+    results.calculate_avg(tries);
 
     return results;
 }
