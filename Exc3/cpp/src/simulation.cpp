@@ -19,7 +19,7 @@ int get_index_ballanced(std::uniform_int_distribution<int>& dist,
     }
 
     auto min_index = std::min_element(unique_index.begin(), unique_index.end(),
-        [bins](auto a, auto b){ return bins.at(a) < bins.at(b); });
+        [&bins](auto a, auto b){ return bins.at(a) < bins.at(b); });
 
     return *min_index;
 }
@@ -44,6 +44,7 @@ single_simulation_results single_simulate_ballanced(int n, int d)
         for(int i = 0; i < n; ++i)
         {
             index = get_index_ballanced(bin, rng, bins, d);
+            //index = bin(rng);
             ++m;
 
             if(bins.at(index) == 0)
@@ -73,6 +74,7 @@ single_simulation_results single_simulate_ballanced(int n, int d)
         while(have_one < n)
         {
             index = get_index_ballanced(bin, rng, bins, d);
+            //index = bin(rng);
             ++m;
 
             if(bins.at(index) == 0)
@@ -91,6 +93,7 @@ single_simulation_results single_simulate_ballanced(int n, int d)
         while(have_two < n)
         {
             index = get_index_ballanced(bin, rng, bins, d);
+            //index = bin(rng);
             ++m;
 
             if(bins.at(index) == 1)
