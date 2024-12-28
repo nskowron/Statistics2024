@@ -1,4 +1,5 @@
 #include <simulation.hpp>
+#include <stations.hpp>
 
 #include <vector>
 #include <random>
@@ -8,46 +9,25 @@
 #include <iostream>
 
 
-void single_simulate_sort(simulation_array& array)
+void single_simulate_broadcast(Broadcaster& broadcaster)
 {
-    array.results = {0, 0};
-
-    for(int j = 1; j < array.size(); ++j)
-    {
-        int key = array.at(j);
-
-        int i = j - 1;
-        while(i >= 0 && array.sim_is_bigger(i, key))
-        {
-            array.sim_insert(i + 1, array.at(i));
-            --i;
-        }
-        array.sim_insert(i + 1, key);
-    }
+    while(!broadcaster.broadcast())
+    {}
 }
 
-full_simulation_results full_simulate_sort(int tries)
+full_simulation_results full_simulate_broadcast(int tries, double p)
 {
     full_simulation_results results;
 
-    std::random_device rd;
-    std::mt19937 rng(rd());
-
     for(int n = 100; n <= 10000; n += 100)
     {
-        simulation_array array(n);
-        for(int i = 1; i <= n; ++i)
-        {
-            array.at(i - 1) = i;
-        }
-
         for(int k = 1; k <= tries; ++k)
         {
-            std::shuffle(array.begin(), array.end(), rng);
+            Broadcaster broadcaster(n, p);
 
-            single_simulate_sort(array);
+            single_simulate_broadcast(broadcaster);
 
-            results.add(n, array.results);
+            results.add(n, broadcaster.results);
         }
         std::cout << n << std::endl;
     }
@@ -58,26 +38,31 @@ full_simulation_results full_simulate_sort(int tries)
 
 void full_simulation_results::add(int n, const single_simulation_results& result)
 {
-    cmp.x.push_back(n);
-    s.x.push_back(n);
+    T.x.push_back(n);
+    T.y.push_back(result.T);
 
-    cmp.y.push_back(result.cmp);
-    s.y.push_back(result.s);
+    // for(int i = 0; i < Tn.size(); ++i)
+    // {
+    //     Tn.at(i).x.push_back(n);
+    //     Tn.at(i).y.push_back(result.Tn.at(i));
+    // }
 }
 
 void full_simulation_results::calculate_avg(int tries)
 {
-    for(int i = 0; i < cmp.x.size(); i += tries)
+    for(int i = 0; i < T.x.size(); i += tries)
     {
-        int sum = std::accumulate(cmp.y.begin() + i, cmp.y.begin() + i + tries, 0);
+        int sum = std::accumulate(T.y.begin() + i, T.y.begin() + i + tries, 0);
 
-        avg_cmp.x.push_back(cmp.x.at(i));
-        avg_cmp.y.push_back(sum / (double)tries);
+        avg_T.x.push_back(T.x.at(i));
+        avg_T.y.push_back(sum / (double)tries);
 
+        // for(int j = 0; j < Tn.size(); ++j)
+        // {
+        //     int sum = std::accumulate(Tn.at(j).y.begin() + i, Tn.at(j).y.begin() + i + tries, 0);
 
-        sum = std::accumulate(s.y.begin() + i, s.y.begin() + i + tries, 0);
-
-        avg_s.x.push_back(s.x.at(i));
-        avg_s.y.push_back(sum / (double)tries);
+        //     avg_Tn.at(j).x.push_back(Tn.at(j).x.at(i));
+        //     avg_Tn.at(j).y.push_back(sum / (double)tries);
+        // }
     }
 }

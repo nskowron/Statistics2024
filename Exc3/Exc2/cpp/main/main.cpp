@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cmath>
 
-void process_results(full_simulation_results& results, const std::string& file_base);
 
 int main()
 {

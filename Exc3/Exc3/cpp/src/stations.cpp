@@ -1,29 +1,26 @@
 #include <stations.hpp>
 
-#include <iostream>
 
+std::uniform_real_distribution<double> Receiver::dist(0, 1);
 
-std::uniform_real_distribution<double> simulation_receiver::dist(0, 1);
-
-simulation_receiver::simulation_receiver(double p) :
+Receiver::Receiver(double p) :
     p(p),
     rng(std::random_device()())
 {}
 
-bool simulation_receiver::receive()
+bool Receiver::receive()
 {
     return dist(rng) <= p;
 }
 
-simulation_broadcaster::simulation_broadcaster(int n, double p) :
-    non_received(n),
-    receivers(n, simulation_receiver(p)),
-    results{0, {n, 0}}
-{
-    std::cout << results.Tn.size();
-}
 
-bool simulation_broadcaster::broadcast()
+Broadcaster::Broadcaster(int n, double p) :
+    non_received(n),
+    receivers(n, Receiver(p)),
+    results{0, std::vector<int>(n, 0)}
+{}
+
+bool Broadcaster::broadcast()
 {
     ++results.T;
 

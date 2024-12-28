@@ -1,5 +1,6 @@
 #include <simulation.hpp>
 #include <plot.hpp>
+#include <stations.hpp>
 
 #include <string>
 #include <algorithm>
@@ -9,65 +10,35 @@ void process_results(full_simulation_results& results, const std::string& file_b
 
 int main()
 {
-    std::string file_base = std::string(OUTPUT_DIRECTORY) + "Plot_";
-    full_simulation_results results = full_simulate_sort(50);
-
-    plot(results.cmp, results.avg_cmp, file_base + "cmp.pdf");
-    plot(results.s, results.avg_s, file_base + "s.pdf");
-
-    { // c) cmp(n)/n
-        axis<double> result;
-        result.x = results.avg_cmp.x;
-        std::transform(
-            results.avg_cmp.y.begin(),
-            results.avg_cmp.y.end(),
-            results.avg_cmp.x.begin(),
-            std::back_inserter(result.y),
-            [](auto& c, auto& n){return c / n;}
-        );
-
-        plot_line(result, file_base + "c)-1.pdf");
+    {
+        std::string file_base = std::string(OUTPUT_DIRECTORY) + "Plot_5_";
+        full_simulation_results results = full_simulate_broadcast(50, 0.5);
+        process_results(results, file_base);
     }
 
-    { // c) cmp(n)/n^2
-        axis<double> result;
-        result.x = results.avg_cmp.x;
-        std::transform(
-            results.avg_cmp.y.begin(),
-            results.avg_cmp.y.end(),
-            results.avg_cmp.x.begin(),
-            std::back_inserter(result.y),
-            [](auto& c, auto& n){return c / (n*n);}
-        );
-
-        plot_line(result, file_base + "c)-2.pdf");
+    {
+        std::string file_base = std::string(OUTPUT_DIRECTORY) + "Plot_1_";
+        full_simulation_results results = full_simulate_broadcast(50, 0.1);
+        process_results(results, file_base);
     }
+}
 
-    { // d) s(n)/n
-        axis<double> result;
-        result.x = results.avg_s.x;
-        std::transform(
-            results.avg_s.y.begin(),
-            results.avg_s.y.end(),
-            results.avg_s.x.begin(),
-            std::back_inserter(result.y),
-            [](auto& s, auto& n){return s / n;}
-        );
+void process_results(full_simulation_results& results, const std::string& file_base)
+{
+    plot(results.T, results.avg_T, file_base + "T.pdf");
 
-        plot_line(result, file_base + "d)-1.pdf");
-    }
+    //plot(results.Tn.at(0), results.avg_Tn.at(0), file_base + "")
+    // { // c) cmp(n)/n
+    //     axis<double> result;
+    //     result.x = results.avg_cmp.x;
+    //     std::transform(
+    //         results.avg_cmp.y.begin(),
+    //         results.avg_cmp.y.end(),
+    //         results.avg_cmp.x.begin(),
+    //         std::back_inserter(result.y),
+    //         [](auto& c, auto& n){return c / n;}
+    //     );
 
-    { // d) s(n)/n^2
-        axis<double> result;
-        result.x = results.avg_s.x;
-        std::transform(
-            results.avg_s.y.begin(),
-            results.avg_s.y.end(),
-            results.avg_s.x.begin(),
-            std::back_inserter(result.y),
-            [](auto& s, auto& n){return s / (n*n);}
-        );
-
-        plot_line(result, file_base + "d)-2.pdf");
-    }
+    //     plot_line(result, file_base + "c)-1.pdf");
+    // }
 }
