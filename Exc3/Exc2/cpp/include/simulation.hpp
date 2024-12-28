@@ -31,13 +31,13 @@ public:
 
     bool sim_is_bigger(int index, int value)
     {
-        results.cmp++;
+        ++results.cmp;
         return this->at(index) > value;
     }
 
     void sim_insert(int index, int value)
     {
-        results.s++;
+        ++results.s;
         this->at(index) = value;
     }
 };
