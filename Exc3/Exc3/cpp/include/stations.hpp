@@ -11,8 +11,8 @@ class Receiver
 {
 private:
     static std::uniform_real_distribution<double> dist;
+    static std::mt19937 rng;
 
-    std::mt19937 rng;
     double p;
 
 public:

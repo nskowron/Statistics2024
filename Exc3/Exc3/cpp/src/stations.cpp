@@ -1,12 +1,12 @@
 #include <stations.hpp>
 
+#include <random>
 
-std::uniform_real_distribution<double> Receiver::dist(0, 1);
 
-Receiver::Receiver(double p) :
-    p(p),
-    rng(std::random_device()())
-{}
+std::uniform_real_distribution<double> Receiver::dist{0, 1};
+std::mt19937 Receiver::rng{std::random_device()()};
+
+Receiver::Receiver(double p) : p(p) {}
 
 bool Receiver::receive()
 {
@@ -16,7 +16,7 @@ bool Receiver::receive()
 
 Broadcaster::Broadcaster(int n, double p) :
     non_received(n),
-    receivers(n, Receiver(p)),
+    receivers(n, p),
     results{0, std::vector<int>(n, 0)}
 {}
 

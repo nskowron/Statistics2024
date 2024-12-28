@@ -11,8 +11,7 @@
 
 void single_simulate_broadcast(Broadcaster& broadcaster)
 {
-    while(!broadcaster.broadcast())
-    {}
+    while(!broadcaster.broadcast()) {}
 }
 
 full_simulation_results full_simulate_broadcast(int tries, double p)
@@ -29,7 +28,7 @@ full_simulation_results full_simulate_broadcast(int tries, double p)
 
             results.add(n, broadcaster.results);
         }
-        std::cout << n << std::endl;
+        std::cout << n << "\n";
     }
     results.calculate_avg(tries);
 
