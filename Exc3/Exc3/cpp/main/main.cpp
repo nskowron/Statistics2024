@@ -26,6 +26,7 @@ int main()
 void process_results(full_simulation_results& results, const std::string& file_base)
 {
     plot(results.T, results.avg_T, file_base + "T.pdf");
+    plot(results.Tn, results.avg_Tn, file_base + "Tn.pdf");
 
     //plot(results.Tn.at(0), results.avg_Tn.at(0), file_base + "")
     // { // c) cmp(n)/n

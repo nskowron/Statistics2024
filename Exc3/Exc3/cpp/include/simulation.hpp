@@ -15,8 +15,8 @@ struct full_simulation_results
     axis<int> T;
     axis<double> avg_T;
 
-    std::vector< axis<int> > Tn;
-    std::vector< axis<double> > avg_Tn;
+    axis<int> Tn;           //min round for receiver 1
+    axis<double> avg_Tn;
 
     void add(int n, const single_simulation_results& result);
     

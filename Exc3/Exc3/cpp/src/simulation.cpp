@@ -38,13 +38,10 @@ full_simulation_results full_simulate_broadcast(int tries, double p)
 void full_simulation_results::add(int n, const single_simulation_results& result)
 {
     T.x.push_back(n);
-    T.y.push_back(result.T);
+    Tn.x.push_back(n);
 
-    // for(int i = 0; i < Tn.size(); ++i)
-    // {
-    //     Tn.at(i).x.push_back(n);
-    //     Tn.at(i).y.push_back(result.Tn.at(i));
-    // }
+    T.y.push_back(result.T);
+    Tn.y.push_back(result.Tn.at(0));
 }
 
 void full_simulation_results::calculate_avg(int tries)
@@ -56,12 +53,10 @@ void full_simulation_results::calculate_avg(int tries)
         avg_T.x.push_back(T.x.at(i));
         avg_T.y.push_back(sum / (double)tries);
 
-        // for(int j = 0; j < Tn.size(); ++j)
-        // {
-        //     int sum = std::accumulate(Tn.at(j).y.begin() + i, Tn.at(j).y.begin() + i + tries, 0);
 
-        //     avg_Tn.at(j).x.push_back(Tn.at(j).x.at(i));
-        //     avg_Tn.at(j).y.push_back(sum / (double)tries);
-        // }
+        sum = std::accumulate(Tn.y.begin() + i, Tn.y.begin() + i + tries, 0);
+
+        avg_Tn.x.push_back(Tn.x.at(i));
+        avg_Tn.y.push_back(sum / (double)tries);
     }
 }
