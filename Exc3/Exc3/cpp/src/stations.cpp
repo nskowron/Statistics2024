@@ -22,14 +22,14 @@ Broadcaster::Broadcaster(int n, double p) :
 
 bool Broadcaster::broadcast()
 {
-    ++results.T;
+    ++results.Tn;
 
     for(int i = 0; i < receivers.size(); ++i)
     {
-        if(results.Tn.at(i) == 0 && receivers.at(i).receive())
+        if(results.Tni.at(i) == 0 && receivers.at(i).receive())
         {
             --non_received;
-            results.Tn.at(i) = results.T;
+            results.Tni.at(i) = results.Tn;
         }
     }
 

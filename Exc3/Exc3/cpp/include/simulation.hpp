@@ -6,17 +6,17 @@
 
 struct single_simulation_results
 {
-    int T;                  //round
-    std::vector<int> Tn;    //min round for each receiver
+    int Tn;                 //round
+    std::vector<int> Tni;   //min round for each receiver
 };
 
 struct full_simulation_results
 {
-    axis<int> T;
-    axis<double> avg_T;
-
-    axis<int> Tn;           //min round for receiver 1
+    axis<int> Tn;
     axis<double> avg_Tn;
+
+    axis<int> Tn1;           //min round for receiver 1
+    axis<double> avg_Tn1;
 
     void add(int n, const single_simulation_results& result);
     

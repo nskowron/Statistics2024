@@ -27,16 +27,16 @@ int main()
 
 void process_results(full_simulation_results& results, const std::string& file_base, double p)
 {
-    plot(results.T, results.avg_T, file_base + "T.pdf");
     plot(results.Tn, results.avg_Tn, file_base + "Tn.pdf");
+    plot(results.Tn1, results.avg_Tn1, file_base + "Tn1.pdf");
 
     { // test) T(n)/(ln n / -ln(1-p))
         axis<double> result;
-        result.x = results.avg_T.x;
+        result.x = results.avg_Tn.x;
         std::transform(
-            results.avg_T.y.begin(),
-            results.avg_T.y.end(),
-            results.avg_T.x.begin(),
+            results.avg_Tn.y.begin(),
+            results.avg_Tn.y.end(),
+            results.avg_Tn.x.begin(),
             std::back_inserter(result.y),
             [p](auto& t, auto& n){return t / (log(n) / -log(1-p));}
         );
