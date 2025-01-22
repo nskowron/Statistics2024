@@ -1,4 +1,2 @@
 image: registry.gitlab.com/rfmc/paro2020-docker
-stages:
-  - build
-  - test
+include: Exc4/.gitlab-ci.yml
