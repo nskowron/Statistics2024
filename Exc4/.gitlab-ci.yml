@@ -10,4 +10,4 @@ build:
     - make
   artifacts:
     paths:
-      - build/bin/main
+      - build/bin/
