@@ -1,0 +1,4 @@
+image: registry.gitlab.com/rfmc/paro2020-docker
+stages:
+  - build
+  - test
