@@ -4,6 +4,7 @@ stages:
 build:
   stage: build
   script:
+    - cd Exc4
     - mkdir build
     - cd build
     - cmake ..
