@@ -1,2 +1,2 @@
-image: registry.gitlab.com/rfmc/paro2020-docker
+image: registry.gitlab.com/nskowron/testdocker
 include: Exc4/.gitlab-ci.yml
