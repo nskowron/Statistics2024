@@ -11,4 +11,4 @@ build:
     - make
   artifacts:
     paths:
-      - build/bin/
+      - Exc4/build/bin/
