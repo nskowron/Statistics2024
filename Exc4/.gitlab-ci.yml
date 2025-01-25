@@ -1,14 +1,1 @@
-stages:
-  - build
-
-build:
-  stage: build
-  script:
-    - cd Exc4
-    - mkdir build
-    - cd build
-    - cmake ..
-    - make
-  artifacts:
-    paths:
-      - Exc4/build/bin/
+# todo
