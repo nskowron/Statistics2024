@@ -1,5 +1,5 @@
 image: registry.gitlab.com/nskowron/testdocker
-include: Exc4/.gitlab-ci.yml
+# include: Exc4/.gitlab-ci.yml
 
 stages:
   - build
