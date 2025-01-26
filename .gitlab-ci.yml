@@ -1,4 +1,4 @@
-image: registry.gitlab.com/nskowron/testdocker
+image: registry.gitlab.com/uni901304/statistics2024
 include: Exc4/.gitlab-ci.yml
 
 stages:
