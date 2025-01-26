@@ -1,1 +1,6 @@
-# todo
+smoke-test-exc4:
+  stage: test
+  dependencies:
+    - build
+  script:
+    - build/bin/exc4
