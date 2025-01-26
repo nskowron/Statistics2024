@@ -1,7 +1,7 @@
 Dependencies:
 ---
 ```
-sudo apt install gnuplot
+sudo apt install gnuplot libboost-all-dev
 ```
 
 Usage for any exercise:
