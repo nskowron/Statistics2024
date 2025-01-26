@@ -3,4 +3,4 @@ smoke-test-exc4:
   dependencies:
     - build
   script:
-    - build/bin/exc4
+    - build/bin/exc4-1
