@@ -1,14 +1,14 @@
 Dependencies:
 ---
 ```
-sudo apt install gnuplot libboost-all-dev python3
+sudo apt install gnuplot python3
 ```
 Dla zadania 4:
 ```
 cd Exc4
 python3 -m venv venv
 source venv/bin/activate
-pip install numpy scipy matplotlib
+pip install numpy scipy matplotlib reportlab
 ```
 
 Usage:
