@@ -5,7 +5,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 with PdfPages("plots/exc3.pdf") as pdf:
     for n in [100, 1000, 10000]:
-        P = [None] * 1000
+        P = []
         for k in range(1,1001):
             L = 0 # time spent above 0
             S = 0 # initial position
@@ -13,11 +13,11 @@ with PdfPages("plots/exc3.pdf") as pdf:
                 if S > 0 or S + X > 0:
                     L += 1
                 S += X
-            P[k-1] = L / n
+            P.append(L / n)
         
         hist, edges = np.histogram(P, bins=20, density=True)
         plt.figure()
-        plt.title('N = ' + str(n))
+        plt.title(f'N = {n}')
         plt.bar(edges[:-1], hist, width=np.diff(edges), align='edge', color='royalblue', label='Pn "PDF"')
         plt.xlim([0, 1])
         plt.xlabel('Pn')
