@@ -25,3 +25,20 @@ with PdfPages("plots/exc3.pdf") as pdf:
         plt.legend()
         pdf.savefig()
         plt.close()
+
+with PdfPages("plots/exc3-arcsin.pdf") as pdf:
+    def arcsin_pdf(x):
+        if x <= 0 or x >= 1:
+            return 0
+        return 1 / (np.pi * np.sqrt(x * (1 - x)))
+    
+    plt.figure()
+    x = np.linspace(0, 1, 1000)
+    plt.plot(x, [arcsin_pdf(t) for t in x], color='red', label='arcsin PDF')
+    plt.xlim([0, 1])
+    plt.ylim([0, 4])
+    plt.xlabel('Pn')
+    plt.ylabel('PDF')
+    plt.legend()
+    pdf.savefig()
+    plt.close()
