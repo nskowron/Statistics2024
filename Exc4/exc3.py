@@ -6,7 +6,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 with PdfPages("plots/exc3.pdf") as pdf:
     for n in [100, 1000, 10000]:
         P = []
-        for k in range(1,1001):
+        for k in range(1,5001):
             L = 0 # time spent above 0
             S = 0 # initial position
             for X in stats.bernoulli.rvs(.5, size=n) * 2 - 1: # tossing coin n times and linear transformation to get -1, 1
@@ -28,12 +28,11 @@ with PdfPages("plots/exc3.pdf") as pdf:
 
 with PdfPages("plots/exc3-arcsin.pdf") as pdf:
     def arcsin_pdf(x):
-        if x <= 0 or x >= 1:
-            return 0
         return 1 / (np.pi * np.sqrt(x * (1 - x)))
     
     plt.figure()
     x = np.linspace(0, 1, 1000)
+    x = x[1:-1]
     plt.plot(x, [arcsin_pdf(t) for t in x], color='red', label='arcsin PDF')
     plt.xlim([0, 1])
     plt.ylim([0, 4])
