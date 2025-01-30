@@ -9,6 +9,8 @@
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usepackage[margin=1in, top=0.5in]{geometry}
+\usepackage{hyperref}
+
 \pgfplotsset{compat=1.18}
 
 \title{Zadanie domowe 4}
@@ -53,33 +55,33 @@ Wystarczy więc wyznaczyć dystrybuantę \( \text{Bin}\left(N, \frac{1}{2}\right
 Wykresy dystrybuant \( S_N \) oraz przybliżających ich rozkładów normalnych \( \mathcal{N}\left(E\left(S_N\right), \sqrt{\text{var}\left(S_N\right)}\right) \):\\
 \begin{figure}[h!]
     \centering
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n10.pdf}
     \end{minipage}%
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n15.pdf}
     \end{minipage}
     
-    \vskip\baselineskip  % Optional vertical space between rows
+    \vskip\baselineskip
     
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n20.pdf}
     \end{minipage}%
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n25.pdf}
     \end{minipage}
     
-    \vskip\baselineskip  % Optional vertical space between rows
+    \vskip\baselineskip
     
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n30.pdf}
     \end{minipage}%
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc2/n100.pdf}
     \end{minipage}
@@ -93,15 +95,15 @@ co jest zgodne z \textbf{CLT}. \\
 Wyniki przeprowadzonych symulacji:\\
 \begin{figure}[h!]
     \centering
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc3/n100.pdf}
     \end{minipage}%
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc3/n1000.pdf}
     \end{minipage}
-    \begin{minipage}{0.45\textwidth}  % Adjust the width as needed
+    \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[scale=0.5]{./plots/exc3/n10000.pdf}
     \end{minipage}
@@ -118,6 +120,9 @@ Jedną z rzeczy, które najmocniej rzucają się w oczy jest jednak tendencja do
 Interpretacja tego jest taka, że prawie cały spacer spędziliśmy albo nad osią \text{OX} albo pod.
 Jest to zgodne z intuicją, z powodu \textit{braku pamięci} procesu \( S_N \) - po oddaleniu się o kilka kroków od osi \text{OX} 
 proces \textit{nie pamięta} jakie było jego położenie początkowe. Zachowuje się jakby zaczynał zupełnie od nowa na tej wysokości.
-Nic go nie ciągnie spowrotem do osi \text{OX}.
+Nic go nie ciągnie spowrotem do osi \text{OX}.\\
+
+
+Kod zrodlowy implementacji: \href{https://github.com/nskowron/Statistics2024/tree/main/Exc4}{Github repository}
 
 \end{document}
